@@ -118,6 +118,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SoftDrink.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SoftDrink.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
