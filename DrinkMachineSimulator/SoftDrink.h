@@ -20,6 +20,7 @@ struct drink {
 class SoftDrink {
 private:
 
+	double pay = 0, total = 0;
 	drink array[TYPES] = {
 		drink("Cola", 1.00, 20),
 		drink("Root Beer", 1.00, 20),
@@ -27,13 +28,13 @@ private:
 		drink("Grape Soda", 1.00, 20),
 		drink("Bottled Water", 1.50, 20) };
 
-	double inputMoney();
+	double inputMoney(int sel);
 	void dailyReport();
 
 public:
 
 	void displayChoices();
-	int buyDrink();
+	void buyDrink(int sel);
 };
 
 #endif // !SOFTDRINK_H
