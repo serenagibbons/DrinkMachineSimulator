@@ -1,16 +1,30 @@
 
 #include "SoftDrink.h"
 
-drink::drink(string n, double c, int num) {		// Constructor
+drink::drink(string n, double c, int num) {		// Drink constructor
 	name = n;
 	cost = c;
 	numAvailable = num;
 }
 
-drink::drink() {								// Default constructor
+
+drink::drink() {								// Drink default constructor
 	name = " ";
 	cost = 0.00;
 	numAvailable = 0;
+
+}
+
+SoftDrink::SoftDrink() {						// SoftDrink constructor
+	array[0] = drink("Cola", 1.00, 20);
+	array[1] = drink("Root Beer", 1.00, 20);
+	array[2] = drink("Orange Soda", 1.00, 20);
+	array[3] = drink("Grape Soda", 1.00, 20);
+	array[4] = drink("Bottled Water", 1.50, 20);
+}
+
+SoftDrink::~SoftDrink() {						// SoftDrink destructor
+	dailyReport();
 }
 
 double SoftDrink::inputMoney(int sel) {	// Accept, validate, and return the amount of money input
@@ -24,7 +38,7 @@ double SoftDrink::inputMoney(int sel) {	// Accept, validate, and return the amou
 	cout << "You entered: $" << pay << endl;
 
 	// Calculate remaining balance due
-	remaining = array[sel].cost - pay;
+	remaining = SoftDrink::array[sel].cost - pay;
 
 	while (pay < array[sel].cost) {
 		cout << "$" << remaining << " due.\n";
@@ -43,14 +57,28 @@ double SoftDrink::inputMoney(int sel) {	// Accept, validate, and return the amou
 	return pay;
 }	
 
-void SoftDrink::dailyReport() {	// Report how many of each drink type remain in the machine at the end of the day and how much money was collected
+void SoftDrink::dailyReport() {
+
+	cout << "Report for Today" << "\n";
+	string star;
+	star.assign(38, '*');
+	
+	cout << setw(21) << "   Drink" << setw(10) << "Price" << "Amount" << endl;
+	cout << star << endl;
+
+	cout << fixed << showpoint << setprecision(2);
+	for (int i = 0; i < 5; i++)
+		cout << i + 1 << ". " << setw(18) << array[i].name << "$" << setw(10) << array[i].cost << array[i].numAvailable << endl;
+
+	cout << endl;
+	cout << "Total amount collected: $" << total << endl << endl;
 }
 
 void SoftDrink::displayChoices() {	// Display a menu of drink names and prices
 	string star;
 	star.assign(30, '*');
 
-	cout << setw(18) << "   Drink" << "Price" << endl;
+	cout << setw(21) << "   Drink" << "Price" << endl;
 	cout << star << endl;
 
 	cout << fixed << showpoint << setprecision(2);
@@ -80,5 +108,6 @@ void SoftDrink::buyDrink(int sel) {	// Handles a sale
 		array[sel].numAvailable--;
 		cout << "Here is your beverage.\n\n";
 	}
+	dailyReport();
 
 }
