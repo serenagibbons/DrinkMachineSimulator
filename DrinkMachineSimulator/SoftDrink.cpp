@@ -11,7 +11,11 @@ drink::drink() {								// Drink default constructor
 	name = " ";
 	cost = 0.00;
 	numAvailable = 0;
+}
 
+
+SoftDrink::~SoftDrink() {						// SoftDrink destructor
+	dailyReport();
 }
 
 SoftDrink::SoftDrink() {						// SoftDrink constructor
@@ -22,12 +26,10 @@ SoftDrink::SoftDrink() {						// SoftDrink constructor
 	array[4] = drink("Bottled Water", 1.50, 20);
 }
 
-SoftDrink::~SoftDrink() {						// SoftDrink destructor
-	dailyReport();
-}
-
 double SoftDrink::inputMoney(int sel) {	// Accept, validate, and return the amount of money input
 	double remaining, change, input;
+
+	pay = 0; // Reset pay each time inputMoney is called
 	
 	cout << "Input money: ";
 	cin >> input;
@@ -45,13 +47,15 @@ double SoftDrink::inputMoney(int sel) {	// Accept, validate, and return the amou
 		cin >> input;
 		pay += input;
 	}
-	cout << "$" << pay << " accepted." << endl << endl;
+	cout << "\n$" << pay << " accepted. ";
 
 	// Calculate change
 	change = pay - array[sel].cost;
 
 	if (pay > array[sel].cost)
-		cout << "Returning $" << change << "...\n";
+		cout << "Returning $" << change << "...";
+
+	cout << endl;
 
 	return pay;
 }	
