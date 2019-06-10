@@ -11,11 +11,11 @@ int main() {
 	double price = 0.00;
 
 	// Call displayChoices and allow patron to pick a drink or quit the program
-	cout << "Soft Drink Machine\n" << endl;
-	cout << left;
-	machine.displayChoices();
-
 	do {
+		cout << "Soft Drink Machine\n" << endl;
+		cout << left;
+		machine.displayChoices();
+	
 		cout << "Select a drink to purchase (or enter -1 to quit)" << endl;
 		cin >> menuSelection;
 
