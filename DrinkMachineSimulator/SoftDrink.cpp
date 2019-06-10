@@ -13,7 +13,6 @@ drink::drink() {								// Drink default constructor
 	numAvailable = 0;
 }
 
-
 SoftDrink::~SoftDrink() {						// SoftDrink destructor
 	dailyReport();
 }
@@ -47,13 +46,16 @@ double SoftDrink::inputMoney(int sel) {	// Accept, validate, and return the amou
 		cin >> input;
 		pay += input;
 	}
-	cout << "\n$" << pay << " accepted. ";
 
 	// Calculate change
 	change = pay - array[sel].cost;
 
-	if (pay > array[sel].cost)
-		cout << "Returning $" << change << "...";
+	if (pay > array[sel].cost) {
+		pay -= change;
+		cout << "\n$" << pay << " accepted. Returning $" << change << "...";
+	}
+	else
+		cout << "\n$" << pay << " accepted. ";
 
 	cout << endl;
 
@@ -62,7 +64,7 @@ double SoftDrink::inputMoney(int sel) {	// Accept, validate, and return the amou
 
 void SoftDrink::dailyReport() {
 
-	cout << "Report for Today" << "\n";
+	cout << "Report for Today\n" << endl;
 	string star;
 	star.assign(38, '*');
 	
