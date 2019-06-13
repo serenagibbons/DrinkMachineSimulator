@@ -124,4 +124,6 @@ void SoftDrink::buyDrink(int sel) {	// Handles a sale
 		cout << "Here is your beverage.\n\n";
 	}
 
+	system("pause");
+	system("CLS");
 }
