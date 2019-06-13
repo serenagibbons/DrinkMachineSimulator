@@ -20,7 +20,7 @@ int main() {
 		cin >> menuSelection;
 
 		if (menuSelection == -1)
-			cout << "Exiting menu.\n";
+			cout << "Exiting Program.\n";
 		else if (menuSelection >= 0 && menuSelection <= 5)
 			machine.buyDrink(menuSelection);
 		else
