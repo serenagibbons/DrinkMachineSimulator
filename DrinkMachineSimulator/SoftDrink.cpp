@@ -29,30 +29,28 @@ double SoftDrink::inputMoney(int sel) {	// Accept, validate, and return the amou
 
 	pay = 0; // Reset pay each time inputMoney is called
 	
-	cout << "Input money (or enter -1 to quit): ";
-	cin >> input;
-	
-	if (input == -1)
-		return pay;
-
-	pay += input;
-	
-	cout << "You entered: $" << pay << endl;
-
-	// Calculate remaining balance due
-	remaining = SoftDrink::array[sel].cost - pay;
-
-	while (pay < array[sel].cost) {
-		cout << "$" << remaining << " due.\n";
+	do {
 		cout << "Input money (or enter -1 to quit): ";
 		cin >> input;
+
 		if (input == -1) {
-			cout << "Returning $" << pay << "...\n\n";
-			pay = 0;
+			if (pay > 0) {
+				cout << "Returning $" << pay << "...\n\n";
+				pay = 0;
+			}
 			return pay;
 		}
+
 		pay += input;
-	}
+		cout << "You entered: $" << pay << endl;
+
+		// Calculate remaining balance due
+		remaining = SoftDrink::array[sel].cost - pay;
+
+		if (pay < array[sel].cost) {
+			cout << "$" << remaining << " due.\n";
+		}
+	} while (pay < array[sel].cost);
 
 	// Calculate change
 	change = pay - array[sel].cost;
